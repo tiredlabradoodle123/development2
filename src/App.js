@@ -5,7 +5,7 @@ import ClothingItem from './components/clothingItem';
 
 ClothingData.forEach((item) => {
   item.image = process.env.PUBLIC_URL + "/" + item.image;
-});
+}); 
 
 function App() {
   const [cart, setCart] = useState(new Array(ClothingData.length).fill(0));
