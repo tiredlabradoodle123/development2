@@ -2,6 +2,7 @@ import {useState} from 'react';
 import './App.css';
 import ClothingData from "./assets/data.json";
 import ClothingItem from './components/clothingItem';
+import logo from './fanci.png';
 
 ClothingData.forEach((item) => {
   item.image = process.env.PUBLIC_URL + "/" + item.image;
@@ -58,6 +59,69 @@ function App() {
     setDisplayItem([...filterDress])
   }
 
+  function filterBlack(){
+    const copyItem = [...originalList];
+    const filterBlack = copyItem.filter(item => {
+      return item.colour.includes("black");
+    } )
+
+    setDisplayItem([...filterBlack])
+  }
+
+  function filterWhite(){
+    const copyItem = [...originalList];
+    const filterWhite = copyItem.filter(item => {
+      return item.colour.includes("white");
+    } )
+
+    setDisplayItem([...filterWhite])
+  }
+
+  function filterYellow(){
+    const copyItem = [...originalList];
+    const filterYellow = copyItem.filter(item => {
+      return item.colour.includes("yellow");
+    } )
+
+    setDisplayItem([...filterYellow])
+  }
+
+  function filterPink(){
+    const copyItem = [...originalList];
+    const filterPink = copyItem.filter(item => {
+      return item.colour.includes("pink");
+    } )
+
+    setDisplayItem([...filterPink])
+  }
+
+  function filterBlue(){
+    const copyItem = [...originalList];
+    const filterBlue = copyItem.filter(item => {
+      return item.colour.includes("blue");
+    } )
+
+    setDisplayItem([...filterBlue])
+  }
+
+  function filterOrange(){
+    const copyItem = [...originalList];
+    const filterOrange = copyItem.filter(item => {
+      return item.colour.includes("orange");
+    } )
+
+    setDisplayItem([...filterOrange])
+  }
+
+  function filterBrown(){
+    const copyItem = [...originalList];
+    const filterBrown= copyItem.filter(item => {
+      return item.colour.includes("brown");
+    } )
+
+    setDisplayItem([...filterBrown])
+  }
+
   function resetItems(){
     const copyItems = [...originalList];
     setDisplayItem(copyItems);
@@ -73,16 +137,25 @@ function App() {
 
   return (
     <div className="App">
+      <img class="logo" src={logo} alt="Logo" />
       <h1>Welcome to FanciClub</h1> {}
 
       <div className="itemsContainer">
         <button class="buttons" onClick={sortByPrice}>Sort by Price (low to high)</button>
         <div>  - </div>
         <button class="Buttons" onClick={resetItems}>Reset/clear filters</button>
-        <h2>Filters:</h2>
-        <button class="Buttons" onClick={filterTop}>Tops Only</button>
-        <button class="Buttons" onClick={filterBottoms}>Bottoms Only</button>
+        <h2>Filter for Item Type:</h2>
+        <button class="Buttons" onClick={filterTop}>Tops Only</button> &nbsp;&nbsp;&nbsp;
+        <button class="Buttons" onClick={filterBottoms}>Bottoms Only</button> &nbsp;&nbsp;&nbsp;
         <button class="Buttons" onClick={filterDresses}>Dresses Only</button>
+        <h2>Filter for Item Colour:</h2>
+        <button class="Buttons" onClick={filterBlack}>Black</button> &nbsp;&nbsp;&nbsp;
+        <button class="Buttons" onClick={filterWhite}>White</button> &nbsp;&nbsp;&nbsp;
+        <button class="Buttons" onClick={filterYellow}>Yellow</button> &nbsp;&nbsp;&nbsp;
+        <button class="Buttons" onClick={filterPink}>Pink</button> &nbsp;&nbsp;&nbsp;
+        <button class="Buttons" onClick={filterBlue}>Blue</button> &nbsp;&nbsp;&nbsp;
+        <button class="Buttons" onClick={filterOrange}>Orange</button> &nbsp;&nbsp;&nbsp;
+        <button class="Buttons" onClick={filterBrown}>Brown</button>
           {displayItem.map((item, index) => (
             <ClothingItem
               item={item}
@@ -104,7 +177,7 @@ function App() {
             if (item > 0) {
               return (
                 <div className="CartItem" key={idx}>
-                  Name: {ClothingData[idx].name}, Price: {ClothingData[idx].price}, Quantity:{formatQuantity(quantity)}
+                  Name: {ClothingData[idx].name}, Price: {ClothingData[idx].price}, Quantity:{formatQuantity(quantity)} &nbsp;&nbsp;&nbsp;
                   <button onClick={() => removeItem(ClothingData[idx])}>Remove</button> 
                 </div>
               );
@@ -113,6 +186,7 @@ function App() {
           } )}
           </div>
         <p>Total Cost: {formatTotal(total)}</p>
+        <p> - </p>
       </div>
   );
         }
