@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background:linear-gradient(white,grey);
 }
 
 .itemsContainer{
@@ -8,12 +9,20 @@
   word-spacing: 5px;
   margin-left: 50px;
   margin-right: 50px;
+  margin-bottom: 20px;
 }
 
-.buttons{
-  margin-left: 50px;
-  margin-right: 50px;
+.Buttons{
   width: auto;
   height: auto;
   display: inline-block;
+}
+
+.images{
+  border: 5px solid #555;
+}
+
+.logo{
+  width: 100px;
+  height: 100px;
 }
