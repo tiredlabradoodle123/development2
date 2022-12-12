@@ -3,72 +3,84 @@
       "name": "Angel of the Morning Top",
       "description": "SPANDEX MESH SUPERB CROP TOP AND SHORT SLEEVES WITH FUR DETAILS",
       "price": 260,
+      "colour": "yellow",
       "image": "images/angelTop.png"
     },
     {
       "name": "Beautiful in This Skirt",
       "description": "NYLON SPANDEX SUPERB MINI-SKIRT WITH LACE DETAILS, CAN STYLE IN TWO DIFFERENT WAYS, AVAILABLE IN BARELY PINK AND YELLOW TAIL",
       "price": 180,
+      "colour": "yellow pink",
       "image": "images/skirt.png"
     },
     {
       "name": "Daphne Long Dress",
       "description": "OPAQUE MESH SLEEVE-LESS LONG DRESS.",
       "price": 120,
+      "colour": "black",
       "image": "images/daphneDress.png"
     },
     {
       "name": "Garden of Eden Dress",
       "description": "PLUNGING NECKLINE RUFFLE DRESS WITH DECORATED ROSETTE.",
       "price": 350,
+      "colour": "pink",
       "image": "images/gardenOfEdenDress.png"
     },
     {
       "name": "Heart Skip A Beat Pants",
       "description": "NYLON SPANDEX LOW WAIST LONG PANTS WITH CUT-OUT AND LACE DETAILS AT THE BACK, AVAILABLE IN HAWAIIAN BLUE",
       "price": 250,
+      "colour": "blue",
       "image": "images/heartPants.png"
     },
     {
       "name": "His Favourite Dress",
       "description": "NYLON SPANDEX LONG DRESS WITH CUT-OUT BACK DETAILS, AVAILABLE IN WHITE AND GREEN BEE",
       "price": 250,
+      "colour": "white green",
       "image": "images/hisFavourite.png"
     },
     {
       "name": "November Rain Top",
       "description": "SPANDEX MESH SEE-THROUGH RUFFLE TOP. AVAILABLE IN WHITE.",
       "price": 710,
+      "colour": "white",
       "image": "images/novemberRainTop.png"
     },
     {
       "name": "Priority Top",
       "description": "SPANDEX MESH LOW-CUT TOP WITH FUR COLLAR, AVAILABLE IN BLACK",
       "price": 230,
+      "colour": "black",
       "image": "images/priorityTop.png"
     },
     {
       "name": "Ribbon Corset",
       "description": "DOUBLE LAYERED SATIN CORSET WITH RIBBON DETAILS.",
       "price": 310,
+      "colour": "black",
       "image": "images/ribbonCorset.png"
     },
     {
       "name": "Pick Me Girl Top",
       "description": "SPANDEX MESH SUPERB CROP TOP WITH LONG SLEEVES AND SQUARE CUTS AT THE BACK, AVAILABLE IN EGYPTIAN BLUE AND PEPPER ORANGE",
       "price": 170,
+      "colour": "blue orange",
       "image": "images/pickMeTop.png"
     },
     {
       "name": "Love potion no.9 Dress",
       "description": "SPANDEX MESH CUT-OUT BACK MINI-DRESS WITH FUR DETAILS, AVAILABLE IN LIME ZEST GREEN AND BLACK",
       "price": 280,
+      "colour": "green",
       "image": "images/lovePotionDress.png"
     },
     {
       "name": "Simple Mesh Pants",
       "description": "SPANDEX MESH PANTS, CAN BE STYLED IN DIFFERENT WAYS. AVAILABLE IN BLACK AND BROWN.",
       "price": 200,
+      "colour": "black brown",
       "image": "images/simpleMeshPant.png"
     }
   ]
