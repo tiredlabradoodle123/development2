@@ -131,8 +131,13 @@ function App() {
     const originalCart = [...cart];
     const newCart = originalCart.filter(cartItem => {return item.price != cartItem.price})
     setCart(newCart)
-    setTotal(total - item.price);
-    setQuantity(quantity -1);
+    if(total > 0){
+      setTotal(total - item.price);
+      setQuantity(quantity -1);
+    } else {
+      setTotal(0);
+      setQuantity(0);
+    }
   }
 
   return (
@@ -174,7 +179,7 @@ function App() {
         <h2>Cart</h2>
         <p>Cost Breakdown:</p>
         {cart.map((item, idx) => {
-            if (item > 0) {
+            if (item > 0 && quantity > 0) {
               return (
                 <div className="CartItem" key={idx}>
                   Name: {ClothingData[idx].name}, Price: {ClothingData[idx].price}, Quantity:{formatQuantity(quantity)} &nbsp;&nbsp;&nbsp;
@@ -192,3 +197,4 @@ function App() {
         }
 
 export default App;
+
