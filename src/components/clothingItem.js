@@ -6,13 +6,19 @@ export default function ClothingItem(props) {
           newCart[props.index] += 1;
           return newCart;
         });
-        props.setQuantity(() => props.quantity + 1);
+        props.setQuantityList((prevList) => {
+          let newquantityList = [...prevList];
+          newquantityList[props.index] += 1;
+          return newquantityList;
+        });
+          
+        //props.setQuantity(() => props.quantity + 1);
       }
 
     return (
         <div>
             <h1>{props.item.name}</h1>
-            <img src={props.item.image}/>
+            <img class="images" src={props.item.image}/>
             <p>Product Description: {props.item.description}</p>
             <p>Price: ${props.item.price}</p>
             <button onClick={handleClick}>Add</button>
