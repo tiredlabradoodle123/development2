@@ -11,11 +11,18 @@ ClothingData.forEach((item) => {
 function App() {
   const [cart, setCart] = useState(new Array(ClothingData.length).fill(0));
   const [total, setTotal] = useState(0);
+  const [quantityList, setQuantityList] = useState(new Array(ClothingData.length).fill(0));
   const [quantity, setQuantity] = useState(0);
   const originalList = ClothingData;
   const [displayItem, setDisplayItem] = useState(ClothingData);
   const formatTotal = (total) => "$" + Number(total.toFixed(2));
   const formatQuantity = (quantity) => Number(quantity.toFixed(2));
+
+  //function formatQuantity(quantity, name){
+   // if(cart.filter(name)){
+      //setQuantity = Number(quantity.toFixed(2));
+    //}
+  //}
 
   function sortByPrice() {
     const copyItems = [...displayItem];
@@ -127,13 +134,26 @@ function App() {
     setDisplayItem(copyItems);
   }
 
+
   function removeItem(item){
     const originalCart = [...cart];
     const newCart = originalCart.filter(cartItem => {return item.price != cartItem.price})
     setCart(newCart)
     if(total > 0){
-      setTotal(total - item.price);
-      setQuantity(quantity -1);
+      if(total - item.price < 0){
+        setTotal(0);
+      } else {
+        setTotal(total - item.price);
+      }
+      if(quantity == 0){
+        const newCart = this.state.cart;
+        newCart.splice(item, 1);
+        this.setState({cart:newCart});
+        //const newCart = cart.filter((item) => item.name !== item);
+        //setCart(newCart);
+      } else {
+        setQuantity(quantity -1);
+      }
     } else {
       setTotal(0);
       setQuantity(0);
@@ -182,7 +202,7 @@ function App() {
             if (item > 0 && quantity > 0) {
               return (
                 <div className="CartItem" key={idx}>
-                  Name: {ClothingData[idx].name}, Price: {ClothingData[idx].price}, Quantity:{formatQuantity(quantity)} &nbsp;&nbsp;&nbsp;
+                  Name: {ClothingData[idx].name}, Price: {ClothingData[idx].price}, Quantity:{formatQuantity(quantity, ClothingData[idx].name)} &nbsp;&nbsp;&nbsp;
                   <button onClick={() => removeItem(ClothingData[idx])}>Remove</button> 
                 </div>
               );
@@ -197,4 +217,3 @@ function App() {
         }
 
 export default App;
-
