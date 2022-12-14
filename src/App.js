@@ -12,17 +12,45 @@ function App() {
   const [cart, setCart] = useState(new Array(ClothingData.length).fill(0));
   const [total, setTotal] = useState(0);
   const [quantityList, setQuantityList] = useState(new Array(ClothingData.length).fill(0));
-  const [quantity, setQuantity] = useState(0);
+  //const [quantity, setQuantity] = useState(0);
   const originalList = ClothingData;
   const [displayItem, setDisplayItem] = useState(ClothingData);
   const formatTotal = (total) => "$" + Number(total.toFixed(2));
-  const formatQuantity = (quantity) => Number(quantity.toFixed(2));
+  //const formatQuantity = (quantity) => Number(quantity.toFixed(2));
 
-  //function formatQuantity(quantity, name){
-   // if(cart.filter(name)){
-      //setQuantity = Number(quantity.toFixed(2));
-    //}
-  //}
+  function addItem(piece){
+    setTotal(total + piece.price);
+    setQuantityList[piece.index](() => quantityList.index += 1);
+      
+  }
+
+  function subtractItem(piece){
+    setTotal(total - piece.price);
+    if(quantityList[piece.index]-1 == 0){
+      removeItem(piece);
+    } else {
+      setQuantityList[piece.index](() => piece.index - 1);
+    }
+  }
+
+  function removeItem(item){
+    //const originalCart = [...cart];
+    //const newCart = originalCart.filter(cartItem => {return item.price != cartItem.price})
+    //setCart(newCart);
+    //const newCart = this.state.cart;
+    
+    const newCart = cart.filter((item) => item.name !== item);
+    newCart.splice(item, 1);
+        //setCart(newCart);
+    this.setState({cart:newCart});
+    const newQuantityList = this.stat.quantityList;
+    newQuantityList.splice(item, 1);
+    this.setState({quantityList:newQuantityList});
+
+    //const originalQuantityList = [...quantityList];
+    //const newQuantityList = originalQuantityList.filter(quantityItem => {return item.index != quantityItem})
+    //setQuantityList(newQuantityList);
+  }
 
   function sortByPrice() {
     const copyItems = [...displayItem];
@@ -134,32 +162,6 @@ function App() {
     setDisplayItem(copyItems);
   }
 
-
-  function removeItem(item){
-    const originalCart = [...cart];
-    const newCart = originalCart.filter(cartItem => {return item.price != cartItem.price})
-    setCart(newCart)
-    if(total > 0){
-      if(total - item.price < 0){
-        setTotal(0);
-      } else {
-        setTotal(total - item.price);
-      }
-      if(quantity == 0){
-        const newCart = this.state.cart;
-        newCart.splice(item, 1);
-        this.setState({cart:newCart});
-        //const newCart = cart.filter((item) => item.name !== item);
-        //setCart(newCart);
-      } else {
-        setQuantity(quantity -1);
-      }
-    } else {
-      setTotal(0);
-      setQuantity(0);
-    }
-  }
-
   return (
     <div className="App">
       <img class="logo" src={logo} alt="Logo" />
@@ -187,8 +189,8 @@ function App() {
               setCart={setCart}
               total={total}
               setTotal={setTotal}
-              quantity={quantity}
-              setQuantity={setQuantity}
+              setQuantityList={setQuantityList}
+              //setQuantity={setQuantity}
               index={index}
               key={index}
             />
@@ -199,10 +201,13 @@ function App() {
         <h2>Cart</h2>
         <p>Cost Breakdown:</p>
         {cart.map((item, idx) => {
-            if (item > 0 && quantity > 0) {
+            if (item > 0) {
               return (
                 <div className="CartItem" key={idx}>
-                  Name: {ClothingData[idx].name}, Price: {ClothingData[idx].price}, Quantity:{formatQuantity(quantity, ClothingData[idx].name)} &nbsp;&nbsp;&nbsp;
+                  Name: {ClothingData[idx].name}, Price: {ClothingData[idx].price}, Quantity: &nbsp;&nbsp;&nbsp;
+                  <button onClick={() => addItem(ClothingData[idx])}>+</button> &nbsp;&nbsp;&nbsp;
+                  {quantityList[idx]} &nbsp;&nbsp;&nbsp;
+                  <button onClick={() => subtractItem(ClothingData[idx])}>-</button> &nbsp;&nbsp;&nbsp;
                   <button onClick={() => removeItem(ClothingData[idx])}>Remove</button> 
                 </div>
               );
@@ -217,3 +222,4 @@ function App() {
         }
 
 export default App;
+
