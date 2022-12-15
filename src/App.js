@@ -18,34 +18,52 @@ function App() {
   const formatTotal = (total) => "$" + Number(total.toFixed(2));
   //const formatQuantity = (quantity) => Number(quantity.toFixed(2));
 
-  function addItem(piece){
+  function addItem(piece, idx){
     setTotal(total + piece.price);
-    setQuantityList[piece.index](() => quantityList.index += 1);
-      
+    let tempQuantityList = quantityList;
+    tempQuantityList[idx] = quantityList[idx] + 1;
+    setQuantityList(tempQuantityList);
+    // cart[piece.index]
+    //   /*
+    // props.setTotal(props.total + props.item.price);
+    //     props.setCart((prevCart) => {
+    //       let newCart = [...prevCart];
+    //       newCart[props.index] += 1;
+    //       return newCart;
+    //     });
+    //     props.setQuantityList((prevList) => {
+    //       let newquantityList = [...prevList];
+    //       newquantityList[props.index] += 1;
+    //       return newquantityList;
+    //     });
+    //   */
   }
 
-  function subtractItem(piece){
-    setTotal(total - piece.price);
-    if(quantityList[piece.index]-1 == 0){
-      removeItem(piece);
+  function subtractItem(piece, idx){
+    if(quantityList[idx]-1 == 0){
+      removeItem(piece, idx);
     } else {
-      setQuantityList[piece.index](() => piece.index - 1);
+      setTotal(total - piece.price);
+      let tempQuantityList = quantityList;
+      tempQuantityList[idx] = quantityList[idx] - 1;
+      setQuantityList(tempQuantityList);
     }
   }
 
-  function removeItem(item){
+  function removeItem(piece, idx){
     //const originalCart = [...cart];
     //const newCart = originalCart.filter(cartItem => {return item.price != cartItem.price})
     //setCart(newCart);
     //const newCart = this.state.cart;
-    
-    const newCart = cart.filter((item) => item.name !== item);
-    newCart.splice(item, 1);
-        //setCart(newCart);
-    this.setState({cart:newCart});
-    const newQuantityList = this.stat.quantityList;
-    newQuantityList.splice(item, 1);
-    this.setState({quantityList:newQuantityList});
+    setTotal(total - (piece.price * quantityList[idx]));
+
+    const newCart = [...cart];
+    newCart[idx] = 0;
+    setCart(newCart);
+
+    const newQuantityList = [...quantityList];
+    newQuantityList[idx] = 0;
+    setQuantityList(newQuantityList);
 
     //const originalQuantityList = [...quantityList];
     //const newQuantityList = originalQuantityList.filter(quantityItem => {return item.index != quantityItem})
@@ -205,14 +223,14 @@ function App() {
               return (
                 <div className="CartItem" key={idx}>
                   Name: {ClothingData[idx].name}, Price: {ClothingData[idx].price}, Quantity: &nbsp;&nbsp;&nbsp;
-                  <button onClick={() => addItem(ClothingData[idx])}>+</button> &nbsp;&nbsp;&nbsp;
+                  <button onClick={() => addItem(ClothingData[idx], idx)}>+</button> &nbsp;&nbsp;&nbsp;
                   {quantityList[idx]} &nbsp;&nbsp;&nbsp;
-                  <button onClick={() => subtractItem(ClothingData[idx])}>-</button> &nbsp;&nbsp;&nbsp;
-                  <button onClick={() => removeItem(ClothingData[idx])}>Remove</button> 
+                  <button onClick={() => subtractItem(ClothingData[idx], idx)}>-</button> &nbsp;&nbsp;&nbsp;
+                  <button onClick={() => removeItem(ClothingData[idx], idx)}>Remove</button> 
                 </div>
               );
             }
-              return null;
+              return <></>
           } )}
           </div>
         <p>Total Cost: {formatTotal(total)}</p>
